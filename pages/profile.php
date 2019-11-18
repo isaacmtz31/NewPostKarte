@@ -1,7 +1,9 @@
 <?php
   session_start();
-  if(isset($_SESSION["email"])){
-      include("./BD/usuario_BD.php");
+  if(isset($_SESSION["email"]))
+    include("./usuario_BD.php");
+  else
+      header("location:./logIn.php");
  ?>
 
  <!DOCTYPE html>
@@ -10,25 +12,25 @@
          <meta charset="UTF-8">
          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
          <title>PostKarte</title>
-                 <link rel="stylesheet" href="css2/normalize.css">
-                 <link rel="stylesheet" href="css2/materialize.min.css">
-                 <link rel="stylesheet" href="css2/jquery.mCustomScrollbar.css">
-                 <link rel="stylesheet" href="css2/sweetalert.css">
-                 <link rel="stylesheet" href="css2/style.css">
-                 <link href="./fontawesome/css/all.min.css" rel="stylesheet">
-                 <link rel="stylesheet" href="./css/profile.css">
+                 <link rel="stylesheet" href="./../css/normalize.css">
+                 <link rel="stylesheet" href="./../css/materialize.min.css">
+                 <link rel="stylesheet" href="./../css/jquery.mCustomScrollbar.css">
+                 <link rel="stylesheet" href="./../css/sweetalert.css">
+                 <link href="./../fontawesome/css/all.min.css" rel="stylesheet">
+                 <link rel="stylesheet" href="./../css/style.css">
+                 <link rel="stylesheet" href="./../css/profile.css">
                  <!--Galeria-->
-                 <link rel="stylesheet" type="text/css" href="./css/galeria/normalize.css" />
-                 <link rel="stylesheet" type="text/css" href="./css/galeria/demo.css" />
-                 <link rel="stylesheet" type="text/css" href="./css/galeria/component.css" />
+                 <link rel="stylesheet" type="text/css" href="./../css/galeria/normalize.css" />
+                 <link rel="stylesheet" type="text/css" href="./../css/galeria/demo.css" />
+                 <link rel="stylesheet" type="text/css" href="./../css/galeria/component.css" />
 
-                 <script src="./jquery/jquery-3.4.1.min.js"></script>
-                 <script src="./js2/jquery.mCustomScrollbar.concat.min.js"></script>
-                 <script src="./materializeV1/js/materialize.min.js"></script>
-                 <script src="./js/otra/homeU.js"></script>
-                 <script src="./js/galeria/modernizr.custom.js"></script>
-                 <script src="./js2/sweetalert.min.js"></script>
-                 <script type="text/javascript" src="./js/otra/profile.js">
+                 <script src="./../jquery/jquery-3.4.1.min.js"></script>
+                 <script src="./../jquery.mCustomScrollbar.concat.min.js"></script>
+                 <script src="./../materializeV1/js/materialize.min.js"></script>
+                 <script src="./../js/otra/homeU.js"></script>
+                 <script src="./../js/galeria/modernizr.custom.js"></script>
+                 <script src="./../js/sweetalert.min.js"></script>
+                 <script type="text/javascript" src="./../js/otra/profile.js">
                  </script>
      </head>
      <body>
@@ -41,10 +43,10 @@
                      <center> PostKarte <i class="zmdi zmdi-close NavLateral-title-btn ShowHideMenu"></i></center>
                  </header>
                  <figure class="full-width NavLateral-logo">
-                     <img src="'<?php echo '$infUser[6]'; ?>'" alt="material-logo" class="responsive-img center-box">
+                     <img src="<?php echo $infUser[6]; ?>" alt="profile-picture" class="responsive-img center-box">
                      <div class="row">
                        <div class="col s12 l12 m12">
-                         <p id="userName"><?php echo '$infUser[1];'?></p>
+                         <p id="userName"><?php echo $infUser[1]." ".$infUser[2];?></p>
                        </div>
                      </div>
                  </figure>
@@ -67,16 +69,14 @@
                          <div class="NavLateral-Nav">
                              <ul class="full-width">
                                  <li class="NavLateralDivider"></li>
-                                 <li>
-                                     <a href="./algo.html" class="NavLateral-DropDown  waves-effect waves-light"> <i class="fas fa-search"></i> Explorar </a>
-                                 </li>
+                                 <li><a href="./Explorar.php" class="waves-effect waves-light"><i class="fas fa-edit"></i>Explorar</a></li>
                                  <li class="NavLateralDivider"></li>
                                  <li>
                                      <a href="#" class="NavLateral-DropDown  waves-effect waves-light"><i class="fas fa-user"></i> Perfil </a>
                                      <ul class="full-width">
-                                         <li><a href="profile.php" class="waves-effect waves-light"><i class="fas fa-edit"></i>Modificar datos personales</a></li>
+                                         <li><a href="./profile.php" class="waves-effect waves-light"><i class="fas fa-edit"></i>Modificar datos personales</a></li>
                                          <li class="NavLateralDivider"></li>
-                                         <li><a href="cambiarPSW.php" class="waves-effect waves-light"><i class="fas fa-lock"></i>Cambiar contraseña</a></li>
+                                         <li><a href="./cambiarPSW.php" class="waves-effect waves-light"><i class="fas fa-lock"></i>Cambiar contraseña</a></li>
                                      </ul>
                                  </li>
                                  <li class="NavLateralDivider"></li>
@@ -101,7 +101,7 @@
                  <ul class="full-width">
                      <li class="btn-MobileMenu ShowHideMenu"><a href="#" class="tooltipped waves-effect waves-light" data-position="bottom" data-delay="50" data-tooltip="Menu"><i class="fas fa-bars"></i></a></li>
                      <li style="padding:0 15px;"></li>
-                     <li><a href="#" class="tooltipped waves-effect waves-light btn-ExitSystem" data-position="bottom" data-delay="50" data-tooltip="Logout"><i class="fas fa-power-off"></i></a></li>
+                     <li><a href="./logOut.php?nombreSesion=email" class="tooltipped waves-effect waves-light btn-ExitSystem" data-position="bottom" data-delay="50" data-tooltip="Logout"><i class="fas fa-power-off"></i></a></li>
                      <li><a href="#" class="tooltipped waves-effect waves-light btn-Search" data-position="bottom" data-delay="50" data-tooltip="Search"><i class="fas fa-search"></i></a></li>
                  </ul>
              </div>
@@ -120,18 +120,18 @@
                         <div class="row">
                           <h5>Datos Personales</h5>
                           <div class="input-field col s6">
-                            <input id="first_name" name="nombreU" type="text" class="validate" value="'<?php echo '$infUser[1]' ?>'">
+                            <input id="first_name" name="nombreU" type="text" class="validate" value="<?php echo $infUser[1] ?>">
                             <label for="first_name">Nombre del usuario</label>
                           </div>
                           <div class="input-field col s6">
-                            <input id="last_name" type="text" class="validate" value="<?php echo '$infUser[2]'; ?>">
+                            <input id="last_name" type="text" class="validate" value="<?php echo $infUser[2]; ?>">
                             <label for="last_name">Apellidos del usuario</label>
                           </div>
                         </div>
                         <div class="row">
                           <h5>Datos de la cuenta</h5>
                           <div class="input-field col s8">
-                            <input disabled value="'<?php echo $infUser[4] ?>''" id="email" type="email" class="validate">
+                            <input disabled value="<?php echo $infUser[4] ?>" id="email" type="email" class="validate">
                             <label for="email">Email</label>
                             <span class="helper-text" data-error="wrong" data-success="right">Para habilitar, da click en el boton.</span>
 
@@ -147,7 +147,6 @@
                             <h5 class="left-align">Género</h5>
                             <div class="row" id="masC">
                               <div class="col s12">
-                                <?php echo $infUser[3] ?>
                                 <input type="radio" id="masculino" name="genero" >
                                 <label for="masculino">Masculino</label>
                               </div>
@@ -161,7 +160,8 @@
                           </div>
                           <div class="input-field col s4">
                             <h5>Edad</h5>
-                              <input type="range" id="edad" min="15" max="100" value="<?php echo '$infUser[5]' ?>"/>
+                              <input type="range" id="edad" min="15" max="100" value="<?php echo $infUser[5] ?>"/>
+                              <span class="helper-text" data-error="wrong" data-success="right"><?php echo $infUser[5] ?></span>
                           </div>
                         </div>
                         <br><br>
@@ -221,16 +221,16 @@
  </section>
 
 
- <script src="./js2/sweetalert.min.js"></script>
+ <script src="./../js/sweetalert.min.js"></script>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
- <script>window.jQuery || document.write('<script src="js2/jquery-2.2.0.min.js"><\/script>')</script>
- <script src="./js2/materialize.min.js"></script>
- <script src="./js2/jquery.mCustomScrollbar.concat.min.js"></script>
- <script src="./js2/main.js"></script>
+ <script>window.jQuery || document.write('<script src="./../js/jquery-2.2.0.min.js"><\/script>')</script>
+ <script src="./../materializeV1/js/materialize.min.js"></script>
+ <script src="./../jquery/jquery.mCustomScrollbar.concat.min.js"></script>
+ <script src="./../js/main.js"></script>
  <script> $(document).ready(function () {
          $('.slider').slider();
      });
-     </script>
+</script>
 
  </body>
  </html>

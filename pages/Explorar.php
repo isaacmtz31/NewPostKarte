@@ -1,26 +1,33 @@
+<?php
+  session_start();
+  if(isset($_SESSION["email"]))
+    include("./usuario_BD.php");
+  else
+      header("location:./logIn.php");
+ ?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>PostKarte</title>
-                <link rel="stylesheet" href="css2/normalize.css">
-                <link rel="stylesheet" href="css2/materialize.min.css">
-                <link rel="stylesheet" href="css2/jquery.mCustomScrollbar.css">
-                <link rel="stylesheet" href="css2/sweetalert.css">
-                <link rel="stylesheet" href="css2/style.css">
-                <link href="./fontawesome/css/all.min.css" rel="stylesheet">
-                <!--Galeria-->
-                <link rel="stylesheet" type="text/css" href="./css/galeria/normalize.css" />
-                <link rel="stylesheet" type="text/css" href="./css/galeria/demo.css" />
-                <link rel="stylesheet" type="text/css" href="./css/galeria/component.css" />
+        <link rel="stylesheet" href="./../css/normalize.css">
+        <link rel="stylesheet" href="./../css/materialize.min.css">
+        <link rel="stylesheet" href="./../css/jquery.mCustomScrollbar.css">
+        <link rel="stylesheet" href="./../css/sweetalert.css">
+        <link rel="stylesheet" href="./../css/style.css">
+        <link href="./../fontawesome/css/all.min.css" rel="stylesheet">
+        <!--Galeria-->
+        <link rel="stylesheet" type="text/css" href="./../css/galeria/normalize.css" />
+        <link rel="stylesheet" type="text/css" href="./../css/galeria/demo.css" />
+        <link rel="stylesheet" type="text/css" href="./../css/galeria/component.css" />
 
-                <script src="./jquery/jquery-3.4.1.min.js"></script>
-                <script src="./js2/jquery.mCustomScrollbar.concat.min.js"></script>
-                <script src="./materializeV1/js/materialize.min.js"></script>
-                <script src="./js/otra/homeU.js"></script>
-                <script src="./js/galeria/modernizr.custom.js"></script>
-                <script src="./js2/sweetalert.min.js"></script>
+        <script src="./../jquery/jquery-3.4.1.min.js"></script>
+        <script src="./../jquery/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="./../materializeV1/js/materialize.min.js"></script>
+        <script src="./../js/otra/homeU.js"></script>
+        <script src="./../js/galeria/modernizr.custom.js"></script>
+        <script src="./../js/sweetalert.min.js"></script>
 
 
     </head>
@@ -34,10 +41,10 @@
                     <center> PostKarte <i class="zmdi zmdi-close NavLateral-title-btn ShowHideMenu"></i></center>
                 </header>
                 <figure class="full-width NavLateral-logo">
-                    <img src="./imgs/team/user4.jpg" alt="material-logo" class="responsive-img center-box">
+                    <img src="<?php echo $infUser[6]; ?>" alt="material-logo" class="responsive-img center-box">
                     <div class="row">
                       <div class="col s12 l12 m12">
-                        <p id="userName">UserName</p>
+                        <p id="userName"><?php echo $infUser[1]." ".$infUser[2];?></p>
                       </div>
                     </div>
                 </figure>
@@ -113,28 +120,28 @@
                       <li class="title-box">
                         <h2>Galeria de <a href="#">PostKarte</a></h2>
                       </li>
-                      <li><a href="#"><img src="./imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
+                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
+                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
+                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
+                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
+                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
+                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
+                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
+                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
+                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
+                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
+                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
+                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
+                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
+                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
                     </ul>
                   </section>
                 </div><!-- /container -->
-                <script src="./js/galeria/masonry.pkgd.min.js"></script>
-            		<script src="./js/galeria/imagesloaded.pkgd.min.js"></script>
-            		<script src="./js/galeria/classie.js"></script>
-            		<script src="./js/galeria/colorfinder-1.1.js"></script>
-            		<script src="./js/galeria/gridScrollFx.js"></script>
+                <script src="./../js/galeria/masonry.pkgd.min.js"></script>
+            		<script src="./../js/galeria/imagesloaded.pkgd.min.js"></script>
+            		<script src="./../js/galeria/classie.js"></script>
+            		<script src="./../js/galeria/colorfinder-1.1.js"></script>
+            		<script src="./../js/galeria/gridScrollFx.js"></script>
             		<script>
             			new GridScrollFx( document.getElementById( 'grid' ), {
             				viewportFactor : 0.4
@@ -172,16 +179,16 @@
 </section>
 
 
-<script src="./js2/sweetalert.min.js"></script>
+<script src="./../js/sweetalert.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js2/jquery-2.2.0.min.js"><\/script>')</script>
-<script src="./js2/materialize.min.js"></script>
-<script src="./js2/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="./js2/main.js"></script>
+<script>window.jQuery || document.write('<script src="./../js/jquery-2.2.0.min.js"><\/script>')</script>
+<script src="./../materializeV1/js/materialize.min.js"></script>
+<script src="./../jquery/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="./../js/main.js"></script>
 <script> $(document).ready(function () {
         $('.slider').slider();
     });
-    </script>
+</script>
 
 </body>
 </html>
