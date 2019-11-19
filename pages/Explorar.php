@@ -1,7 +1,10 @@
 <?php
   session_start();
   if(isset($_SESSION["email"]))
-    include("./usuario_BD.php");
+  {
+      include("./usuario_BD.php");
+      include("./Explorar_Imgs_BD.php");
+  }
   else
       header("location:./logIn.php");
  ?>
@@ -67,16 +70,16 @@
                         <div class="NavLateral-Nav">
                             <ul class="full-width">
                                 <li class="NavLateralDivider"></li>
-                                <li>
-                                    <a href="#" class="NavLateral-DropDown  waves-effect waves-light"> <i class="fas fa-search"></i> Explorar </a>
-                                </li>
+
+                                    <li><a href="./Explorar.php" class="waves-effect waves-light"><i class="fas fa-edit"></i>Explorar</a></li>
+
                                 <li class="NavLateralDivider"></li>
                                 <li>
                                     <a href="#" class="NavLateral-DropDown  waves-effect waves-light"><i class="fas fa-user"></i> Perfil </a>
                                     <ul class="full-width">
-                                        <li><a href="ComparteAlgo.jsp" class="waves-effect waves-light"><i class="fas fa-edit"></i>Modificar datos personales</a></li>
+                                        <li><a href="profile.php" class="waves-effect waves-light"><i class="fas fa-edit"></i>Modificar datos personales</a></li>
                                         <li class="NavLateralDivider"></li>
-                                        <li><a href="form.jsp" class="waves-effect waves-light"><i class="fas fa-lock"></i>Cambiar contraseña</a></li>
+                                        <li><a href="cambiarPSW.php" class="waves-effect waves-light"><i class="fas fa-lock"></i>Cambiar contraseña</a></li>
                                     </ul>
                                 </li>
                                 <li class="NavLateralDivider"></li>
@@ -118,22 +121,18 @@
                   <section class="grid-wrap">
                     <ul class="grid swipe-right" id="grid">
                       <li class="title-box">
-                        <h2>Galeria de <a href="#">PostKarte</a></h2>
+                        <h2>Categorias de <a href="#">PostKarte</a></h2>
                       </li>
-                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
-                      <li><a href="#"><img src="./../imgs/dummy.png" alt="dummy"><h3>A fantastic title</h3></a></li>
+                      <?php
+                        echo "$categorias"
+                       ?>
+                       <br><br>
+                       <li class="title-box">
+                         <h2>Papeles de <a href="#">PostKarte</a></h2>
+                       </li>
+                       <?php
+                         echo $papeles;
+                        ?>
                     </ul>
                   </section>
                 </div><!-- /container -->

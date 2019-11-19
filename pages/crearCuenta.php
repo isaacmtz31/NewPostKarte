@@ -69,7 +69,7 @@
                 <div class="col s12 m6 input-field">
                     <i class="fas fa-key prefix blue-text"></i>
                     <label for="contrasena">Contrase&ntilde;a</label>
-                    <input type="password" id="contra" name="contra"  data-validetta="required,minlength[6],maxLength[16]">
+                    <input type="password" id="contra" name="contra"  data-validetta="required,min-length[6],max-Length[16]">
                 </div>
                 <div class="col s12 input-field">
                     <button type="submit" class="btn blue" style="width:100%;">Registrar</button>

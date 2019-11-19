@@ -17,7 +17,7 @@ h1 h2 h3{
 .full-width{
     margin: 0;
     padding: 0;
-    width: 100%, auto;
+    width: 100%;
 }
 .center-box{
     margin:0 auto;
@@ -99,8 +99,9 @@ h1 h2 h3{
 	border-style: solid;
 }
 .NavLateral-logo img{
-    width: 75%;
-    height: auto;
+		min-width: 90%;
+		min-height: 30vh;
+    max-height: 35vh;
     display: block;
     border-radius: 50%;
     margin-bottom: 10px;
