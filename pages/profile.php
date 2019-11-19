@@ -27,7 +27,7 @@
          <link rel="stylesheet" type="text/css" href="./../css/galeria/demo.css" />
          <link rel="stylesheet" type="text/css" href="./../css/galeria/component.css" />
 
-         
+
          <script src="http://code.jquery.com/jquery-latest.min.js"></script>
          <script src="./../jquery/jquery.mCustomScrollbar.concat.min.js"></script>
          <script src="./../materializeV1/js/materialize.min.js"></script>
@@ -90,7 +90,9 @@
                                      <ul class="full-width">
                                          <li><a href="button.jsp" class="waves-effect waves-light"><i class="fas fa-envelope-open"></i>Mis PostKartes</a></li>
                                          <li class="NavLateralDivider"></li>
-                                         <li><a href="form.jsp" class="waves-effect waves-light"><i class="fas fa-paper-plane"></i>Enviar una postal</a></li>
+                                         <li><a href="./enviarPostal.php" class="waves-effect waves-light"><i class="fas fa-paper-plane"></i>Enviar una postal</a></li>
+                                         <li class="NavLateralDivider"></li>
+                                         <li><a href="form.jsp" class="waves-effect waves-light"><i class="fas fa-palette"></i>Diseña tu propia postal</a></li>
                                      </ul>
                                  </li>
 

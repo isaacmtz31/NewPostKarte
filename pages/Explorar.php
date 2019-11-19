@@ -88,7 +88,9 @@
                                     <ul class="full-width">
                                         <li><a href="button.jsp" class="waves-effect waves-light"><i class="fas fa-envelope-open"></i>Mis PostKartes</a></li>
                                         <li class="NavLateralDivider"></li>
-                                        <li><a href="form.jsp" class="waves-effect waves-light"><i class="fas fa-paper-plane"></i>Enviar una postal</a></li>
+                                        <li><a href="./enviarPostal.php" class="waves-effect waves-light"><i class="fas fa-paper-plane"></i>Enviar una postal</a></li>
+                                        <li class="NavLateralDivider"></li>
+                                        <li><a href="form.jsp" class="waves-effect waves-light"><i class="fas fa-palette"></i>Diseña tu propia postal</a></li>
                                     </ul>
                                 </li>
 

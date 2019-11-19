@@ -26,7 +26,7 @@
          <link rel="stylesheet" type="text/css" href="./../css/galeria/normalize.css" />
          <link rel="stylesheet" type="text/css" href="./../css/galeria/demo.css" />
          <link rel="stylesheet" type="text/css" href="./../css/galeria/component.css" />
-         <link rel="stylesheet" href="./../css/cambiarPSW.css">
+         <link rel="stylesheet" href="./../css/enviarPostal.css">
 
          <script src="http://code.jquery.com/jquery-latest.min.js"></script>
          <script src="./../jquery/jquery.mCustomScrollbar.concat.min.js"></script>
@@ -35,7 +35,7 @@
          <script src="./../js/validetta/src/validetta.js"></script>
          <script src="./../js/validetta/localization/validettaLang-es-ES.js"></script>
          <script src="./../js/confirm/dist/jquery-confirm.min.js"></script>
-         <script src ="./../js/actualizarContra.js" type="text/javascript" ></script>
+         <script src ="./../js/enviarPostal.js" type="text/javascript" ></script>
 
          </script>
      </head>
@@ -91,7 +91,7 @@
                                      <ul class="full-width">
                                          <li><a href="button.jsp" class="waves-effect waves-light"><i class="fas fa-envelope-open"></i>Mis PostKartes</a></li>
                                          <li class="NavLateralDivider"></li>
-                                         <li><a href="./enviarPostal.php" class="waves-effect waves-light"><i class="fas fa-paper-plane"></i>Enviar una postal</a></li>
+                                         <li><a href="form.jsp" class="waves-effect waves-light"><i class="fas fa-paper-plane"></i>Enviar una postal</a></li>
                                          <li class="NavLateralDivider"></li>
                                          <li><a href="form.jsp" class="waves-effect waves-light"><i class="fas fa-palette"></i>Diseña tu propia postal</a></li>
                                      </ul>
@@ -122,24 +122,27 @@
 
              <div class="row">
                <div class="col l12 m12 s12">
-                 <div class="container">
+                 <div class="" >
                     <div class="row">
-                      <form class="col s12" id="updateContra" autocomplete="on">
+                      <div class="col s12 l6 m12" >
+                        <h5><i>Tu imagen</i></h5>
+                          <img id="imgPostal"  class="materialboxed responsive-img" src="../imgs/paisaje.jpg">
+                      </div><br><br>
+                      <form class="col s12 l6 m12" id="updateContra" autocomplete="on">
                         <div class="row">
-                          <h5>Datos Personales</h5>
+                          <h5>Datos para tu PostKarte</h5>
+
                           <div class="input-field col s12">
                             <input id="email" name="emailP" type="email" class="validate" data-validetta="required,email">
-                            <label for="email">E-mail del usuario</label>
-                            <span class="helper-text" data-error="wrong" data-success="right">Es nesario que ingreses tu correo para verificar tu identidad.</span>
+                            <label for="email">E-mail del <i>destinatario</i></label>
+                            <span class="helper-text" data-error="wrong" data-success="right">Es nesario que ingreses un correo válido, de lo contrario, la postal no llegará a su destino.</span>
                           </div>
+
                           <div class="input-field col s12">
-                            <input id="psw" name="psw" type="password" class="validate" data-validetta= "required, minLength[6]">
-                            <label for="psw">Contrase&ntilde;a</label>
-                          </div>
-                          <div class="input-field col s12">
-                            <input id="newpsw" name="pswV" type="password" class="validate" data-validetta="required, minLength[6]">
-                            <label for="newpsw">Confirma tu contrase&ntilde;a</label>
-                            <br><br><br><br>
+                            <textarea id="textarea2" class="materialize-textarea" data-length="120"></textarea>
+                            <label for="textarea2">Dedicatoria especial</label>
+                            <span class="helper-text" data-error="wrong" data-success="right">Aquí puedes escribir una peque&ntilde;a dedicatoria</span>
+                            <br><br><br>
                           </div>
                           <div class="row">
                             <div class="col s12 l12 m12">
@@ -148,6 +151,7 @@
                                </button>
                             </div>
                           </div>
+
                         </div>
                       </form>
                     </div>
