@@ -7,6 +7,8 @@
   }
   else
       header("location:./logIn.php");
+
+
  ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -28,9 +30,9 @@
         <script src="./../jquery/jquery-3.4.1.min.js"></script>
         <script src="./../jquery/jquery.mCustomScrollbar.concat.min.js"></script>
         <script src="./../materializeV1/js/materialize.min.js"></script>
-        <script src="./../js/otra/homeU.js"></script>
         <script src="./../js/galeria/modernizr.custom.js"></script>
         <script src="./../js/sweetalert.min.js"></script>
+        <script src="./../js/explorar.js" charset="utf-8"></script>
 
 
     </head>
@@ -118,42 +120,38 @@
             </div>
 
             <div class="row">
-              <div class="col l12 m12 s12">
-                <div class="">
+              <div  class="col l12 m12 s12">
+                <div class="" id="yy">
                   <section class="grid-wrap">
                     <ul class="grid swipe-right" id="grid">
                       <li class="title-box">
                         <h2>Categorias de <a href="#">PostKarte</a></h2>
                       </li>
-                      <?php
-                        echo "$categorias"
-                       ?>
+                        <?php echo "$categorias";?>
                        <br><br>
                        <li class="title-box">
                          <h2>Papeles de <a href="#">PostKarte</a></h2>
                        </li>
-                       <?php
-                         echo $papeles;
-                        ?>
+                       <?php echo $papeles;?>
                     </ul>
                   </section>
                 </div><!-- /container -->
+                <div class="" id="xx"></div>
+                <mi>
                 <script src="./../js/galeria/masonry.pkgd.min.js"></script>
             		<script src="./../js/galeria/imagesloaded.pkgd.min.js"></script>
             		<script src="./../js/galeria/classie.js"></script>
             		<script src="./../js/galeria/colorfinder-1.1.js"></script>
             		<script src="./../js/galeria/gridScrollFx.js"></script>
-            		<script>
-            			new GridScrollFx( document.getElementById( 'grid' ), {
-            				viewportFactor : 0.4
-            			} );
-            		</script>
+
+              </mi>
               </div>
             </div>
 
 
           <!-- Footer -->
           <footer id="foot" class="page-footer white-text">
+            <script src="./../js/gridPrueba.js"></script>
           <div class="container">
             <div class="row">
               <div class="col l6 s12">

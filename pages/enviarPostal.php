@@ -1,9 +1,22 @@
 <?php
       session_start();
       if(isset($_SESSION["email"]))
-        include("./cambiarPSW_BD.php");
+        {
+          include("./cambiarPSW_BD.php");
+        }
       else
           header("location:./logIn.php");
+      $myImg = "";
+      try {
+        $aux = $_GET["IM"];
+          if($aux != NULL)
+            $myImg = $_REQUEST["IM"];
+          else
+            $myImg = "../imgs/paisaje.jpg";
+      } catch (\Exception $e) {
+
+      }
+
  ?>
 
  <!DOCTYPE html>
@@ -17,7 +30,7 @@
          <link rel="stylesheet" href="./../css/materialize.min.css">
          <link rel="stylesheet" href="./../css/jquery.mCustomScrollbar.css">
          <link rel="stylesheet" href="./../css/sweetalert.css">
-         <link rel="stylesheet" href="./../css/style.css">
+         <link rel="stylesheet" href="./../css/stle.css">
          <link rel="stylesheet" href="./../css/profile.css">
          <link href="./../fontawesome/css/all.min.css" rel="stylesheet">
          <link href="./../js/validetta/src/validetta.css" rel="stylesheet">
@@ -126,7 +139,8 @@
                     <div class="row">
                       <div class="col s12 l6 m12" >
                         <h5><i>Tu imagen</i></h5>
-                          <img id="imgPostal"  class="materialboxed responsive-img" src="../imgs/paisaje.jpg">
+                          <img id="imgPostal"  class="materialboxed responsive-img" src="../imgs/paisaje.jpg"><br><br>
+                          <a href="./Explorar"><h5><i>Explorar más imagenes </i></h5></a>
                       </div><br><br>
                       <form class="col s12 l6 m12" id="updateContra" autocomplete="on">
                         <div class="row">
@@ -146,14 +160,17 @@
                           </div>
                           <div class="row">
                             <div class="col s12 l12 m12">
-                              <button id="" class="btn waves-effect botones" type="submit" name="">Actualizar
+                              <button id="" class="btn waves-effect botones" type="submit" name="">Enviar
                                  <i class="fas fa-paper-plane"></i>
                                </button>
                             </div>
                           </div>
 
                         </div>
+
                       </form>
+
+
                     </div>
                  </div><!-- /container -->
                </div>
