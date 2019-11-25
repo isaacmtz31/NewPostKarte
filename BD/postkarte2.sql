@@ -11,20 +11,20 @@ create table admini(
 drop table if exists usuario;
 create table usuario(
 	idUsuario int(10) primary key not null auto_increment,
-	nombreUsuario varchar(100),
-    apellidoUsuario varchar(100),
-    genero varchar(15),
-	contra varchar(32),
-	email varchar(60), 
-    edad int(2),
-    fotoPerfil varchar(500) default 'C:\\wamp64\\www\\postkarte_v2\\imgs\\users\\user1.jpg',
+	nombreUsuario varchar(100) not null,
+    apellidoUsuario varchar(100) not null,
+    genero varchar(15) not null,
+	contra varchar(32) not null,
+	email varchar(60) unique not null, 
+    edad int(2) not null,
+    fotoPerfil varchar(500) default './../imgs/users/user4.jpg',
     fechaRegistro datetime default current_timestamp
 );
 drop table if exists categorias;
 create table categorias(
 	idCategoria int(10) primary key not null auto_increment,
     nombreCategoria varchar(100),    
-    imagen nvarchar(300) null default 'C:\\wamp64\\www\\postkarte_v2\\imgs\\categorias\\categoria1.jpg',
+    imagen nvarchar(300) null default './../imgs/categorias/categoria1.jpg',
     conteo int(4) not null default 0 /* cuenta las postales enviadas pertenecientes a esta categoria */
 );
 
@@ -32,7 +32,7 @@ create table papel
 (
 	idPapel int(10) primary key not null auto_increment,
     nombrePapel varchar(150),
-	img varchar(150) default 'C:\\wamp64\\www\\postkarte_v2\\imgs\\papeles\\papel1.jpg'  
+	img varchar(150) default './../imgs/papeles/papel1.jpg'  
 );
 
 drop table if exists karte;
@@ -75,18 +75,20 @@ begin
 			set ok = (select count(idAdmin) from admini where email = mail and contra = psw);
 				if(ok = 0)then
 					set msj = 'ADMIN NO ENCONTRADO';
+                    select msj as aviso;
                 else
-					set msj = 'ADMIN ENCONTRADO';
+					select * from admini;
                 end if;
         else
 			set ok = (select count(idUsuario) from usuario where email = mail and contra = psw);
             if(ok = 0)then
 					set msj = 'USUARIO NO ENCONTRADO';
+                    select msj as aviso;
                 else
-					set msj = 'USUARIO ENCONTRADO';
+					select * from usuario;
                 end if;
         end if;      
-        select msj as aviso;
+        
 end**
 delimiter ;
 select * from usuario;
@@ -131,10 +133,6 @@ end**
 delimiter ;
 call agregarUsuario('ISAAC','MARTINEZ SANCHEZ', 'MASCULINO', '1234','isaac@mail.com',20);
 select * from usuario;
-insert into usuario(idUsuario,nombreUsuario,apellidoUsuario,genero,contra,email,edad)  values (1, 'ISAAC','MARTINEZ SANCHEZ', 'MASCULINO', '1234','isaac@mail.com',20);
-insert into usuario(nombreUsuario,apellidoUsuario,genero,contra,email,edad)  values ('ISAAC','MARTINEZ SANCHEZ', 'MASCULINO', '1234','isaac@mail.com',20);
-delete from usuario;
-
 drop procedure if exists agregarAdmin;
 delimiter **
 create procedure agregarAdmin(in mail varchar(60), in psw varchar(32))
@@ -181,6 +179,156 @@ end if;
 end**
 delimiter ;
 select * from usuario;
-call datosUsuario('isaac@mail.com')
+call datosUsuario('isi_mrt@hotmail.com');
+
+
+drop procedure if exists actualizarDatos;
+delimiter **
+create procedure actualizarDatos(in newnombreUsuario varchar(100),in newapellidoUsuario varchar(100),in newgenero varchar(15), in mail varchar(60),in newemail varchar(60), in newedad int(2) ,in newfotoPerfil varchar(500) )	
+begin
+	declare existe int;
+    declare msj varchar(100);
+    declare idaux int(10);
+    set existe = (select count(idUsuario) from usuario where mail = email);
+    if(existe != 0)then
+		set idaux = (select idUsuario from usuario where mail = email);
+		if(newemail = '')then /*No se cambiara la sesion de la pagina*/
+			if(newnombreUsuario != '') then
+				if(newapellidoUsuario != '') then
+					if(newgenero != '')then
+						if(newedad > 15 AND newedad < 100)then
+							if(newfotoPerfil != '') then
+								update usuario set nombreUsuario = newnombreUsuario, apellidoUsuario = newapellidoUsuario, genero = newgenero, edad = newedad, fotoPerfil = concat('./../imgs/users/', newfotoPerfil) where idUsuario = idaux;
+                                set msj = '¡Datos del usuario modificados correctamente!';
+							else
+								update usuario set nombreUsuario = newnombreUsuario, apellidoUsuario = newapellidoUsuario, genero = newgenero, edad = newedad where idUsuario = idaux;
+                                set msj = '¡Datos del usuario modificados correctamente!';
+                            end if;
+                        else
+							set msj = 'Edad fuera del rango';
+                        end if;							
+                    else	
+						set msj = 'Se debe elegir un genero';
+                    end if;
+                else
+					set msj = 'Los apellidos no pueden estar vacios';
+                end if;
+            else
+				set msj = 'El nombre no puede estar vacio';
+            end if;            
+        else	/*Se cambiara la sesion de la pagina*/				
+			if(newnombreUsuario != '') then
+				if(newapellidoUsuario != '') then
+					if(newgenero != '')then
+						if(newedad > 15 AND newedad < 100)then
+							if(newfotoPerfil != '') then
+								update usuario set nombreUsuario = newnombreUsuario, apellidoUsuario = newapellidoUsuario, genero = newgenero, email=newemail, edad = newedad, fotoPerfil = concat('./../imgs/users/', newfotoPerfil) where idUsuario = idaux;
+                                set msj = '¡Datos del usuario modificados correctamente!';
+							else
+								update usuario set nombreUsuario = newnombreUsuario, apellidoUsuario = newapellidoUsuario, genero = newgenero, email=newemail, edad = newedad where idUsuario = idaux;
+                                set msj = '¡Datos del usuario modificados correctamente!';
+                            end if;
+                        else
+							set msj = 'Edad fuera del rango';
+                        end if;							
+                    else	
+						set msj = 'Se debe elegir un genero';
+                    end if;
+                else
+					set msj = 'Los apellidos no pueden estar vacios';
+                end if;
+            else
+				set msj = 'El nombre no puede estar vacio';
+            end if;   
+        end if;
+    else
+		set msj = 'Ese usuario no existe';
+    end if;
+    select msj as aviso;
+end**
+delimiter ;
+select * from usuario;
+call actualizarDatos('Isaac','Martinez Sanchez','Masculino', 'isi_mrt@hotmail.com','', 21, 'user4.jpg');	
+
+
+drop view if exists explorarCategorias;
+create view explorarCategorias as	
+    select nombreCategoria as 'Categorias', imagen from categorias ORDER BY RAND() limit 7;
+
+drop view if exists explorarPapeles;
+create view explorarPapeles as	    
+    select nombrePapel as 'Papeles', img  from papel ORDER BY RAND() limit 7;
+
+
+
+/*INSERTS NECESARIOS PARA LOS PAPELES Y CATEGORIAS*/
+	insert into papel (nombrePapel, img) values ('Papel1','./../imgs/papeles/papel1.jpg'),
+										   ('Papel2','./../imgs/papeles/papel2.jpg'),
+                                           ('Papel3','./../imgs/papeles/papel3.jpg'),
+                                           ('Papel4','./../imgs/papeles/papel4.jpg'),
+                                           ('Papel5','./../imgs/papeles/papel5.jpg'),
+                                           ('Papel6','./../imgs/papeles/papel6.jpg'),
+                                           ('Papel7','./../imgs/papeles/papel7.jpg'),
+                                           ('Papel8','./../imgs/papeles/papel8.jpg'),
+                                           ('Papel9','./../imgs/papeles/papel9.jpg'),
+                                           ('Papel10','./../imgs/papeles/papel10.jpg');
+                                           
+delete from papel where idPapel > 10;                                    
+insert into categorias(nombreCategoria, imagen, conteo) values ('Amor', './../imgs/categorias/categoria1.jpg',0),                                           
+															   ('Amistad', './../imgs/categorias/categoria2.jpg',0),
+                                                               ('Invierno', './../imgs/categorias/categoria3.jpg',0),
+                                                               ('Navidad', './../imgs/categorias/categoria4.jpg',0),
+                                                               ('Sanación', './../imgs/categorias/categoria5.jpg',0),
+                                                               ('Cumpleaños', './../imgs/categorias/categoria6.jpg',0),
+                                                               ('Ciudades', './../imgs/categorias/categoria7.jpg',0),
+                                                               ('Paisajes', './../imgs/categorias/categoria8.jpg',0),
+                                                               ('Graduación', './../imgs/categorias/categoria9.jpg',0),
+                                                               ('Lugares', './../imgs/categorias/categoria10.jpg',0);
+    
+select * from explorarCategorias;
+select * from explorarPapeles;
+
+drop procedure if exists cambiarPSW;
+delimiter **
+create procedure cambiarPSW(in mailU varchar(60), in npsw varchar(32), in npswv nvarchar(32))
+begin
+	declare existe int;
+    declare msj varchar(100);
+    declare aux int(10);
+    set existe = (select count(idUsuario) from usuario where email = mailU);
+    if(existe != 0)then
+		if(npsw != '' )then
+			if(npswv != '')then
+				if(npsw = npswv) then
+					set aux = (select idUsuario from usuario where email = mailU);
+					update usuario set contra = npsw where idUsuario = aux;
+                    set msj = 'Datos modificados';
+				else
+					set msj = 'Las contraseñas no son iguales';
+				end if;
+            else
+				set msj = 'Campo contrasena nueva verificacion VACIO';
+            end if;
+        else
+			set msj = 'Campo contrasena nueva VACIO';
+        end if;
+    else
+		set msj = 'Usario inexistente';
+    end if;  
+    select msj as aviso;
+end**
+delimiter ;
+
+select * from usuario;
+
+call cambiarPSW('isi_mrt@hotmail.com','123456','123456');
+
+
+
+
+
+
+
+
 
 
