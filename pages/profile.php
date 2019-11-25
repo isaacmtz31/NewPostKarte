@@ -92,7 +92,7 @@
                                          <li class="NavLateralDivider"></li>
                                          <li><a href="./enviarPostal.php" class="waves-effect waves-light"><i class="fas fa-paper-plane"></i>Enviar una postal</a></li>
                                          <li class="NavLateralDivider"></li>
-                                         <li><a href="form.jsp" class="waves-effect waves-light"><i class="fas fa-palette"></i>Diseña tu propia postal</a></li>
+                                         <li><a href="./../creaPK/postal.php" class="waves-effect waves-light"><i class="fas fa-palette"></i>Diseña tu propia postal</a></li>
                                      </ul>
                                  </li>
 
@@ -154,7 +154,7 @@
                             <h5 class="left-align">Género</h5>
                             <div class="row" id="masC">
                               <div class="col s12">
-                                <?php if($infUser[3]=='Masculino'){
+                                <?php if(($infUser[3]=='Masculino') || ($infUser[3]=='MASCULINO')){
                                   echo "<input type='radio' id='masculino' name='genero' value='Masculino' checked>
                                   <label for='masculino'>Masculino</label><br><br>";
                                   echo "<input type='radio' id='femenino' name='genero' value='Femenino' >
@@ -164,7 +164,7 @@
                             </div>
                             <div classs="row">
                               <div class="col s12">
-                                <?php if($infUser[3]=='Femenino'){
+                                <?php if($infUser[3]=='Femenino' || $infUser=='FEMENINO'){
                                   echo "<input type='radio' id='masculino' name='genero' value='Masculino'>
                                   <label for='masculino'>Masculino</label><br><br>";
                                   echo "<input type='radio' id='femenino' name='genero' value='Femenino' checked>

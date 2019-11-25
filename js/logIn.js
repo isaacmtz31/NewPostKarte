@@ -5,15 +5,14 @@ $(document).ready(function(){
         bubbleGapLeft: -5,
         onValid:function(evnt){
             evnt.preventDefault();
-            var tipoAlerts = new Array("red","green");
-            var iconos = new Array("fas fa-user fa-2x","fas fa-check fa-2x");
+            var tipoAlerts = new Array("red","blue");
+            var iconos = new Array("fas fa-exclamation","fas fa-check fa-2x");
             $.ajax({
                 method:"POST",
-                url:"./index_AX.php",
+                url:"./../pages/index_AX.php",
                 data:$("#formLoginV3m").serialize(),
                 cache:false,
-                success:function(respAX)
-                {
+                success:function(respAX){
                     console.log(respAX);
                     var AX = JSON.parse(respAX);
                     $.alert({
@@ -23,7 +22,7 @@ $(document).ready(function(){
                         type:tipoAlerts[AX.val],
                         onDestroy:function(){
                             if(AX.val == 1){
-                                window.location.replace("./profile.php");
+                                window.location.replace("./../pages/profile.php");
                             }
                         }
                     });
